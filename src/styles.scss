@@ -1,1 +1,44 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("./fonts/PT_Sans/stylesheet.css");
+
+html {
+	min-width: 360px;
+}
+
+body {
+    font-family: 'PT Sans' !important;
+    font-size: 18px;
+    color: #222;
+    overflow-x: hidden;
+    margin: 0px !important;
+}
+body.open {
+	overflow-y: hidden;
+}
+a {
+	text-decoration: none !important;
+  &:hover {
+    cursor: pointer;
+  }
+}
+ul {
+  list-style: none;
+}
+.conteiner-main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+app-side-bar {
+    background-color: #63998d;
+    border-right: 1px solid #91decd;
+    height: 100vh;
+}
+.app-main {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    margin-left: 10px;
+}
+

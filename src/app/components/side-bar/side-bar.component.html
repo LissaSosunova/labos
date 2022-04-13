@@ -1,0 +1,22 @@
+<!-- Mobile version -->
+<div class="d-flex d-md-none col-md-6 sidebar-mob">
+    <ul>
+        <li><a [routerLink]="['orders']" [routerLinkActive]="['active']">
+            <i class="fas fa-info-circle fa-fw"></i>
+            Orders</a></li>
+        <li><a [routerLink]="['patients']" [routerLinkActive]="['active']">
+            <i class="fas fa-info-circle fa-fw"></i>
+            Patients</a></li>
+    </ul>
+</div>
+
+<div class="d-none d-md-flex sidebar">
+    <ul>
+        <li><a [routerLink]="['orders']" [routerLinkActive]="['active']">
+            <i class="fas fa-info-circle fa-fw"></i>
+            <i class="fa-solid fa-heart-circle-check"></i>
+            Orders</a></li>
+        <li><a [routerLink]="['patients']" [routerLinkActive]="['active']">
+            <i class="fas fa-info-circle fa-fw"></i>Patients</a></li>
+    </ul>
+</div>
