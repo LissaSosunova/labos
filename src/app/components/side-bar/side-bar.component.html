@@ -1,9 +1,9 @@
 <div class="sidebar" [ngClass]="{'sidebar-open' : openedMenu === true}">
     <div class="btn-open-menu" (click)="openMenu()" [ngClass]="{'btn-open' : openedMenu === false, 'btn-close' : openedMenu === true}"></div>
     <ul *ngIf="openedMenu === true">
-        <li><a [routerLink]="['orders']" [routerLinkActive]="['active']" [ngClass]="{'a-opened' : openedMenu === true}">
+        <li><a [routerLink]="['orders']" [routerLinkActive]="['active']">
             Orders</a></li>
-        <li><a [routerLink]="['patients']" [routerLinkActive]="['active']" [ngClass]="{'a-opened' : openedMenu === true}">
+        <li><a [routerLink]="['patients']" [routerLinkActive]="['active']">
             Patients</a></li>
     </ul>
 </div>

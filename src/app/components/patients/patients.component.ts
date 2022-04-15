@@ -22,7 +22,6 @@ export class PatientsComponent implements OnInit {
     this.store.dispatch(new LoadPatientss());
     this.store.pipe(select(getPatients)).subscribe((state) => {
       this.patients = state.data;
-      console.log(this.patients);
     }
     );
   }
