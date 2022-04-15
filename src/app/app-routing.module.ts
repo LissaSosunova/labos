@@ -19,17 +19,7 @@ const routes: Routes = [
     data: {
       title: 'Labos test',
       content: 'Welcome page'
-    },
-    children: [
-      {
-        path: 'favorites',
-        component: OrdersComponent,
-        data: {
-          title: 'Labos test',
-          content: 'Orders favorites'
-        }
-      }
-    ]
+    }
   },
   {
     path: 'patients',
@@ -37,17 +27,7 @@ const routes: Routes = [
     data: {
       title: 'Labos test',
       content: 'Patients'
-    },
-    children: [
-      {
-        path: 'favorites',
-        component: PatientsComponent,
-        data: {
-          title: 'Labos test',
-          content: 'Patients favorites'
-        }
-      }
-    ]
+    }
   }
 ];
 
