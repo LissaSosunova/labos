@@ -128,5 +128,8 @@
       }
     }
   },
-  "defaultProject": "labos"
+  "defaultProject": "labos",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
