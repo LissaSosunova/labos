@@ -8,7 +8,7 @@ export const rootReducer = {};
 export interface AppState {
     patients: StatePatients;
     orders: StateOrders;
-};
+}
 
 
 export const reducers: ActionReducerMap<AppState, any> = {
@@ -23,7 +23,7 @@ export const getOrders = createSelector(
     selectOrders,
     (state: StateOrders) => state
     );
-  export const getPatients = createSelector(
+export const getPatients = createSelector(
     selectPatients,
     (state: StatePatients) => state
   );

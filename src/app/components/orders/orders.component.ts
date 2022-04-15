@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadOrders } from 'src/app/store/actions/orders.actions';
+import { LoadOrders, AddOrderToFavorite } from 'src/app/store/actions/orders.actions';
 import { Store, select } from '@ngrx/store';
 import { getOrders } from 'src/app/store/reducers';
 import { SearchPipe } from 'src/app/shared/pipes/search.pipe';
@@ -12,7 +12,8 @@ import { SearchPipe } from 'src/app/shared/pipes/search.pipe';
 })
 export class OrdersComponent implements OnInit {
   orders = {};
-  orderSearch: string = '';
+  orderSearch = '';
+  showFav = false;
   constructor(
     private store: Store<any>
   ) { }
@@ -20,10 +21,15 @@ export class OrdersComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(new LoadOrders());
     this.store.pipe(select(getOrders)).subscribe((state) => {
-      console.log(state)
       this.orders = state.data;
     }
     );
   }
 
+  setFavorite(id: any): void {
+    this.store.dispatch(new AddOrderToFavorite({id}));
+  }
+  switchView(): void {
+    this.showFav = !this.showFav;
+  }
 }

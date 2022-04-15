@@ -4,4 +4,4 @@ export const MockServer = {
         orders: '79fb05cb',
         patients: '51597ef3'
     }
-}
+};

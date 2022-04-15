@@ -4,6 +4,7 @@ export enum PatientsActionTypes {
   LoadPatientss = '[Patients] Load Patientss',
   LoadPatientssSuccess = '[Patients] Load Patientss Success',
   LoadPatientssFailure = '[Patients] Load Patientss Failure',
+  AddPatientToFavorite = '[Patients] Add Patient To Favorite'
 }
 
 export class LoadPatientss implements Action {
@@ -20,5 +21,11 @@ export class LoadPatientssFailure implements Action {
   constructor(public payload: any) { }
 }
 
-export type PatientsActions = LoadPatientss | LoadPatientssSuccess | LoadPatientssFailure;
+export class AddPatientToFavorite implements Action {
+  readonly type = PatientsActionTypes.AddPatientToFavorite;
+  constructor(public payload: any) { }
+}
+
+
+export type PatientsActions = LoadPatientss | LoadPatientssSuccess | LoadPatientssFailure | AddPatientToFavorite;
 
