@@ -12,7 +12,7 @@ import { SearchPipe } from 'src/app/shared/pipes/search.pipe';
 })
 export class OrdersComponent implements OnInit {
   orders = {};
-  orderSearch: string = '';
+  orderSearch = '';
   showFav = false;
   constructor(
     private store: Store<any>
@@ -27,7 +27,7 @@ export class OrdersComponent implements OnInit {
   }
 
   setFavorite(id: any): void {
-    this.store.dispatch(new AddOrderToFavorite({id: id}))
+    this.store.dispatch(new AddOrderToFavorite({id}));
   }
   switchView(): void {
     this.showFav = !this.showFav;

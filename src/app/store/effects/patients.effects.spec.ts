@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { PatientsEffects } from './patients.effects';
 
 describe('PatientsEffects', () => {
+  // tslint:disable-next-line
   let actions$: Observable<any>;
   let effects: PatientsEffects;
 

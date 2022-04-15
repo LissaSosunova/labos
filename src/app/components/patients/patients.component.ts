@@ -12,7 +12,7 @@ import { SearchPipe } from 'src/app/shared/pipes/search.pipe';
 })
 export class PatientsComponent implements OnInit {
   patients = {};
-  patientSearch: string = '';
+  patientSearch = '';
   showFav = false;
   constructor(
     private store: Store<any>
@@ -22,12 +22,12 @@ export class PatientsComponent implements OnInit {
     this.store.dispatch(new LoadPatientss());
     this.store.pipe(select(getPatients)).subscribe((state) => {
       this.patients = state.data;
-      console.log(this.patients)
+      console.log(this.patients);
     }
     );
   }
   setFavorite(id: any): void {
-    this.store.dispatch(new AddPatientToFavorite({id: id}))
+    this.store.dispatch(new AddPatientToFavorite({id}));
   }
   switchView(): void {
     this.showFav = !this.showFav;

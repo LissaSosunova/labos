@@ -5,68 +5,68 @@ export const ordersFeatureKey = 'orders';
 
 export interface Order {
   creationDate: {
-    dateTime: String;
-    formattedDate: String;
-    formattedTime: String;
+    dateTime: string;
+    formattedDate: string;
+    formattedTime: string;
   };
   creator: {
-    code: Number;
-    name: String;
-    username: String;
+    code: number;
+    name: string;
+    username: string;
   };
   facility: {
-    address: Object;
-    code: Number;
-    name: String;
-    restrictedDistributions: Boolean;
+    address: object;
+    code: number;
+    name: string;
+    restrictedDistributions: boolean;
   };
-  flags: String;
-  hasComments: Boolean;
-  identifier: String;
+  flags: string;
+  hasComments: boolean;
+  identifier: string;
   insurance: {
     paymentMethods: Array<any>;
-    isRejected: Boolean;
-    onHold: Boolean;
-    orderName: String;
-    orderNum: Number;
+    isRejected: boolean;
+    onHold: boolean;
+    orderName: string;
+    orderNum: number;
   };
-  isRejected: Boolean;
-  onHold: Boolean;
-  orderName: String;
-  orderNum: Number;
+  isRejected: boolean;
+  onHold: boolean;
+  orderName: string;
+  orderNum: number;
   patient: {
-    address: Object;
-    age: String;
-    birthDate: Object;
-    birthYear: Number;
-    code: Number;
-    defaultFormattedId: String;
-    defaultId: String;
-    defaultIdType: Object;
-    firstName: String;
-    fullName: String;
-    lastName: String;
-    middleName: String;
-    sex: Object;
+    address: object;
+    age: string;
+    birthDate: object;
+    birthYear: number;
+    code: number;
+    defaultFormattedId: string;
+    defaultId: string;
+    defaultIdType: object;
+    firstName: string;
+    fullName: string;
+    lastName: string;
+    middleName: string;
+    sex: object;
   };
   physician: {
     code: 107354
-    firstName: String;
-    lastName: String;
-    name: String;
+    firstName: string;
+    lastName: string;
+    name: string;
   };
   requests: Array<any>;
   samples: Array<any>;
-  stat: Boolean
+  stat: boolean;
   status: {
-    identifier: String;
-    name: String;
+    identifier: string;
+    name: string;
   };
   testTypes: Array<any>;
 }
 
 export interface NewOrder extends Order {
-  favorite: Boolean;
+  favorite: boolean;
 }
 export interface StateOrders {
   data: Array<NewOrder>;
@@ -85,29 +85,31 @@ export function ordersReducer(state: StateOrders = initialState, action: OrdersA
       updateState.data = action.payload.order;
       const newstateData: Array<NewOrder> = [];
       updateState.data.forEach((item) => {
-        newstateData.push({...item, favorite: false})
-      })
+        newstateData.push({...item, favorite: false});
+      });
       updateState.isLoaded = true;
       updateState.data = newstateData;
       return updateState;
     }
-    case OrdersActionTypes.AddOrderToFavorite:
+    case OrdersActionTypes.AddOrderToFavorite: {
       const updateState = {...state};
       const id = action.payload.id;
       const newstateData: Array<NewOrder> = [];
       updateState.data.forEach((item) => {
         if (item.orderNum === id) {
           if (item.favorite === true) {
-            newstateData.push({...item, favorite: false})
+            newstateData.push({...item, favorite: false});
           } else {
-            newstateData.push({...item, favorite: true})
+            newstateData.push({...item, favorite: true});
           }
         } else {
-          newstateData.push({...item})
+          newstateData.push({...item});
         }
-      })
+      });
       updateState.data = newstateData;
       return updateState;
+    }
+
     case OrdersActionTypes.LoadOrdersFailure:
       return {
         ...state,

@@ -18,7 +18,7 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   public getInfo(alias: string): Observable<any> {
-    return this.http.get(BASE_URL+ `${alias}`, this.options)
+    return this.http.get(BASE_URL + `${alias}`, this.options)
     .pipe(
       catchError((err) => {
         console.log('error caught in service', err);

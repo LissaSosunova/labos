@@ -4,44 +4,44 @@ import { PatientsActions, PatientsActionTypes } from 'src/app/store/actions/pati
 export const patientsFeatureKey = 'patients';
 export interface Patient {
   address: {
-    fax: String;
-    zip: String;
-    email: String;
-    phone1: String;
-    phone2: String;
-    street1: String;
-    street2: String;
-    street3: String;}
-  age: String;
+    fax: string;
+    zip: string;
+    email: string;
+    phone1: string;
+    phone2: string;
+    street1: string;
+    street2: string;
+    street3: string; };
+  age: string;
   birthDate: {
-    dateTime: String;
-    formattedDate: String;
-  }
-  birthYear: Number;
-  code: Number;
-  defaultId: String;
+    dateTime: string;
+    formattedDate: string;
+  };
+  birthYear: number;
+  code: number;
+  defaultId: string;
   defaultIdType: {
-    code: Number;
-    name: String;}
-  firstName: String;
-  fullName: String;
+    code: number;
+    name: string; };
+  firstName: string;
+  fullName: string;
   ids: Array<Ids>;
-  inactive: false
-  lastName: String;
-  middleName: String;
+  inactive: false;
+  lastName: string;
+  middleName: string;
 }
 
 export interface Ids {
-  code: Number;
-  name: String;
-  value: String;
+  code: number;
+  name: string;
+  value: string;
 }
 export interface NewPatient extends Patient {
-  favorite: Boolean;
+  favorite: boolean;
 }
 export interface StatePatients {
   data: any;
-  isLoaded: Boolean;
+  isLoaded: boolean;
 }
 
 export const initialState: StatePatients = {
@@ -57,8 +57,8 @@ export function patientsReducer(state: StatePatients = initialState, action: Pat
       updateState.data = action.payload.patient;
       const newstateData: Array<NewPatient> = [];
       updateState.data.forEach((item: Patient) => {
-        newstateData.push({...item, favorite: false})
-      })
+        newstateData.push({...item, favorite: false});
+      });
       updateState.isLoaded = true;
       updateState.data = newstateData;
       return updateState;
@@ -70,14 +70,14 @@ export function patientsReducer(state: StatePatients = initialState, action: Pat
         updateState.data.forEach((item: NewPatient) => {
           if (item.defaultId === id) {
             if (item.favorite === true) {
-              newstateData.push({...item, favorite: false})
+              newstateData.push({...item, favorite: false});
             } else {
-              newstateData.push({...item, favorite: true})
+              newstateData.push({...item, favorite: true});
             }
           } else {
-            newstateData.push({...item})
+            newstateData.push({...item});
           }
-        })
+        });
         updateState.data = newstateData;
         return updateState;
       }
@@ -90,5 +90,5 @@ export function patientsReducer(state: StatePatients = initialState, action: Pat
     default:
       return state;
   }
-};
+}
 
