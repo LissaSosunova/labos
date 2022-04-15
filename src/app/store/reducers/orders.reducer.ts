@@ -71,13 +71,11 @@ export interface NewOrder extends Order {
 export interface StateOrders {
   data: Array<NewOrder>;
   isLoaded: boolean;
-  favorites: Array<any>;
 }
 
 export const initialState: StateOrders = {
   data: [],
-  isLoaded: false,
-  favorites: []
+  isLoaded: false
 };
 
 export function ordersReducer(state: StateOrders = initialState, action: OrdersActions): StateOrders {
@@ -99,7 +97,11 @@ export function ordersReducer(state: StateOrders = initialState, action: OrdersA
       const newstateData: Array<NewOrder> = [];
       updateState.data.forEach((item) => {
         if (item.orderNum === id) {
-          newstateData.push({...item, favorite: true})
+          if (item.favorite === true) {
+            newstateData.push({...item, favorite: false})
+          } else {
+            newstateData.push({...item, favorite: true})
+          }
         } else {
           newstateData.push({...item})
         }
@@ -109,7 +111,7 @@ export function ordersReducer(state: StateOrders = initialState, action: OrdersA
     case OrdersActionTypes.LoadOrdersFailure:
       return {
         ...state,
-        data: [], favorites: [], isLoaded: false
+        data: [], isLoaded: false
       };
     default:
       return state;

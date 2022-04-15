@@ -1,14 +1,19 @@
-<div class="search">Search by order name <input type="search" [(ngModel)] = "orderSearch" #ctrl="ngModel"></div>
+<div class="search">Search by order name <input type="search" [(ngModel)] = "orderSearch" #ctrl="ngModel" class="input-search"></div>
 <div class="wrapper">
-    <button (click)="switchView()">show fav</button>
+    <div class="col-xs-12 end-xs">
+        <button (click)="switchView()" class="btn-show-fav">
+            <span *ngIf="showFav === false">Show favorite</span>
+            <span *ngIf="showFav === true">Hide favorite</span>
+        </button>
+    </div>
     <table *ngIf="showFav === false">
         <thead>
             <tr>
+                <th>Order name (number)</th>
                 <th>Create date</th>
                 <th>Creator name</th>
                 <th>Facility name (code)</th>
                 <th>Identifier</th>
-                <th>Order name (number)</th>
                 <th>Patient fullName</th>
                 <th>Physician name</th>
                 <th>Order status</th>
@@ -16,13 +21,13 @@
             </tr>
         </thead>
         <tr *ngFor="let order of orders | search: orderSearch : 'orderName'">
+            <td>
+                {{order.orderName}} ({{order.orderNum}})
+            </td>
             <td>{{order.creationDate.dateTime}}</td>
             <td>{{order.creator?.name}}</td>
             <td>{{order.facility?.name}}, ({{order.facility?.code}})
             <td>{{order.identifier}}</td>
-            <td>
-                {{order.orderName}} ({{order.orderNum}})
-            </td>
             <td>{{order.patient?.fullName}}</td>
             <td>{{order.physician?.name}}</td>
             <td>{{order.status?.name}}</td>
@@ -34,30 +39,31 @@
     <table *ngIf="showFav === true">
         <thead>
             <tr>
+                <th>Order name (number)</th>
                 <th>Create date</th>
                 <th>Creator name</th>
                 <th>Facility name (code)</th>
                 <th>Identifier</th>
-                <th>Order name (number)</th>
                 <th>Patient fullName</th>
                 <th>Physician name</th>
                 <th>Order status</th>
                 <th>Add favorite</th>
             </tr>
         </thead>
-        <tr *ngFor="let order of orders | search: orderSearch : 'orderName'">
-            <td *ngIf="order.favorite === true">{{order.creationDate.dateTime}}</td>
-            <td *ngIf="order.favorite === true">{{order.creator?.name}}</td>
-            <td *ngIf="order.favorite === true">{{order.facility?.name}}, ({{order.facility?.code}})
-            <td *ngIf="order.favorite === true">{{order.identifier}}</td>
-            <td *ngIf="order.favorite === true">
+        <tr *ngFor="let order of orders | search: orderSearch : 'orderName'" [ngSwitch]="order.favorite">
+            <td *ngSwitchCase="true">
                 {{order.orderName}} ({{order.orderNum}})
             </td>
-            <td *ngIf="order.favorite === true">{{order.patient?.fullName}}</td>
-            <td *ngIf="order.favorite === true">{{order.physician?.name}}</td>
-            <td *ngIf="order.favorite === true">{{order.status?.name}}</td>
-            <td *ngIf="order.favorite === true">
-                <div class="btn-heart" (click)="setFavorite(order.orderNum)" [ngClass]="{'red': order.favorite === true, 'white': order.favorite === false}"></div></td>
+            <td *ngSwitchCase="true">{{order.creationDate.dateTime}}</td>
+            <td *ngSwitchCase="true">{{order.creator?.name}}</td>
+            <td *ngSwitchCase="true">{{order.facility?.name}}, ({{order.facility?.code}})
+            <td *ngSwitchCase="true">{{order.identifier}}</td>
+            <td *ngSwitchCase="true">{{order.patient?.fullName}}</td>
+            <td *ngSwitchCase="true">{{order.physician?.name}}</td>
+            <td *ngSwitchCase="true">{{order.status?.name}}</td>
+            <td *ngSwitchCase="true">
+                <div class="btn-heart" (click)="setFavorite(order.orderNum)" [ngClass]="{'red': order.favorite === true, 'white': order.favorite === false}"></div>
+            </td>
         </tr>
     </table>
 </div>

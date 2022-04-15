@@ -1,22 +1,9 @@
-<!-- Mobile version -->
-<div class="d-flex d-md-none col-md-6 sidebar-mob">
-    <ul>
-        <li><a [routerLink]="['orders']" [routerLinkActive]="['active']">
-            <i class="fas fa-info-circle fa-fw"></i>
+<div class="sidebar" [ngClass]="{'sidebar-open' : openedMenu === true}">
+    <div class="btn-open-menu" (click)="openMenu()" [ngClass]="{'btn-open' : openedMenu === false, 'btn-close' : openedMenu === true}"></div>
+    <ul *ngIf="openedMenu === true">
+        <li><a [routerLink]="['orders']" [routerLinkActive]="['active']" [ngClass]="{'a-opened' : openedMenu === true}">
             Orders</a></li>
-        <li><a [routerLink]="['patients']" [routerLinkActive]="['active']">
-            <i class="fas fa-info-circle fa-fw"></i>
+        <li><a [routerLink]="['patients']" [routerLinkActive]="['active']" [ngClass]="{'a-opened' : openedMenu === true}">
             Patients</a></li>
-    </ul>
-</div>
-
-<div class="d-none d-md-flex sidebar">
-    <ul>
-        <li><a [routerLink]="['orders']" [routerLinkActive]="['active']">
-            <i class="fas fa-info-circle fa-fw"></i>
-            <i class="fa-solid fa-heart-circle-check"></i>
-            Orders</a></li>
-        <li><a [routerLink]="['patients']" [routerLinkActive]="['active']">
-            <i class="fas fa-info-circle fa-fw"></i>Patients</a></li>
     </ul>
 </div>

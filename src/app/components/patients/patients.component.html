@@ -1,1 +1,66 @@
-<p>patients works!</p>
+<div class="search">Search by first name <input type="search" [(ngModel)] = "patientSearch" #ctrl="ngModel" class="input-search"></div>
+
+<div class="wrapper">
+    <div class="col-xs-12 end-xs">
+        <button (click)="switchView()" class="btn-show-fav">
+            <span *ngIf="showFav === false">Show favorite</span>
+            <span *ngIf="showFav === true">Hide favorite</span>
+        </button>
+    </div>
+    <table *ngIf="showFav === false">
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Birth Date </th>
+                <th>Age</th>
+                <th>Code</th>
+                <th>Default Id</th>
+                <th>Patient Phone number</th>
+                <th>Patient Address</th>
+                <th>Patient email</th>
+                <th>Patient favorite</th>
+            </tr>
+        </thead>
+        <tr *ngFor="let patient of patients | search: patientSearch : 'firstName'">
+            <td>{{patient.fullName}}</td>
+            <td>{{patient.birthDate?.formattedDate}}</td>
+            <td>{{patient.age}}</td>
+            <td>{{patient.code}}</td>
+            <td>{{patient.defaultId}}</td>
+            <td>{{patient.address?.phone1}}</td>
+            <td>{{patient.address?.zip}}, {{patient.address?.street1}} {{patient.address?.street2}}</td>
+            <td>{{patient.address?.email}}</td>
+            <td >
+                <div class="btn-heart" (click)="setFavorite(patient.defaultId)" [ngClass]="{'red': patient.favorite === true, 'white': patient.favorite === false}"></div></td>
+        </tr>
+    </table>
+    
+    <table *ngIf="showFav === true">
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Birth Date </th>
+                <th>Age</th>
+                <th>Code</th>
+                <th>Default Id</th>
+                <th>Patient Phone number</th>
+                <th>Patient Address</th>
+                <th>Patient email</th>
+                <th>Patient favorite</th>
+            </tr>
+        </thead>
+        <tr *ngFor="let patient of patients | search: patientSearch : 'orderName';" [ngSwitch]="patient.favorite">
+            <td *ngSwitchCase="true">{{patient.fullName}}</td>
+            <td *ngSwitchCase="true">{{patient.birthDate?.formattedDate}}</td>
+            <td *ngSwitchCase="true">{{patient.age}}</td>
+            <td *ngSwitchCase="true">{{patient.code}}</td>
+            <td *ngSwitchCase="true">{{patient.defaultId}}</td>
+            <td *ngSwitchCase="true">{{patient.address?.phone1}}</td>
+            <td *ngSwitchCase="true">{{patient.address?.zip}}, {{patient.address?.street1}} {{patient.address?.street2}}</td>
+            <td *ngSwitchCase="true">{{patient.address?.email}}</td>
+            <td *ngSwitchCase="true">
+            <div class="btn-heart" (click)="setFavorite(patient.defaultId)" [ngClass]="{'red': patient.favorite === true, 'white': patient.favorite === false}"></div>
+            </td>
+        </tr>
+    </table>
+</div>

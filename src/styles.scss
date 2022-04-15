@@ -14,12 +14,7 @@ body {
 body.open {
 	overflow-y: hidden;
 }
-a {
-	text-decoration: none !important;
-  &:hover {
-    cursor: pointer;
-  }
-}
+
 ul {
   list-style: none;
 }
@@ -31,14 +26,17 @@ ul {
 }
 app-side-bar {
     background-color: #63998d;
-    border-right: 1px solid #91decd;
+    border-right: 1px solid #3f796c;
     height: 100vh;
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
 }
 .app-main {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     width: 100%;
-    margin-left: 10px;
+    margin-left: 100px;
 }
 
