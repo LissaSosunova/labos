@@ -3,8 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { MockServer } from 'src/app/shared/constants/api.constants';
 
-const BASE_URL = 'https://api.mocki.io/v2/';
+const BASE_URL = MockServer.url;
 @Injectable({
   providedIn: 'root'
 })

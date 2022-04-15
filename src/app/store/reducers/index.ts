@@ -19,9 +19,11 @@ export const reducers: ActionReducerMap<AppState, any> = {
 export const selectOrders = (state: AppState) => state.orders;
 export const selectPatients = (state: AppState) => state.patients;
 
-export const getSpinnerState = createFeatureSelector<AppState>('orders');
-
 export const getOrders = createSelector(
-    getSpinnerState,
-    (state: AppState) => state.orders
+    selectOrders,
+    (state: StateOrders) => state
+    );
+  export const getPatients = createSelector(
+    selectPatients,
+    (state: StatePatients) => state
   );

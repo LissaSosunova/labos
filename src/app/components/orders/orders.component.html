@@ -1,4 +1,9 @@
 <input type="search" [(ngModel)] = "orderSearch" #ctrl="ngModel">
-        <!-- <div *ngFor="let order of orders?.orders | search: orderSearch : 'identifier'">
-        {{order.orderName}}, <strong>{{order.orderName}}</strong>
-        </div> -->
+        <div *ngFor="let order of orders | search: orderSearch : 'orderName'">
+            
+        {{order.orderName}}, <strong>{{order.creationDate.formattedDate}}</strong>
+
+        </div>
+        <div *ngFor="let item of orders | keyvalue">
+            Key: <b>{{item.key}}</b> and Value: <b>{{item.value}}</b>
+        </div>
