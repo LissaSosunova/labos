@@ -1,9 +1,64 @@
-<input type="search" [(ngModel)] = "orderSearch" #ctrl="ngModel">
-        <div *ngFor="let order of orders | search: orderSearch : 'orderName'">
-            
-        {{order.orderName}}, <strong>{{order.creationDate.formattedDate}}</strong>
-
-        </div>
-        <div *ngFor="let item of orders | keyvalue">
-            Key: <b>{{item.key}}</b> and Value: <b>{{item.value}}</b>
-        </div>
+<div class="search">Search by order name <input type="search" [(ngModel)] = "orderSearch" #ctrl="ngModel"></div>
+<div class="wrapper">
+    <button (click)="switchView()">show fav</button>
+    <table *ngIf="showFav === false">
+        <thead>
+            <tr>
+                <th>Create date</th>
+                <th>Creator name</th>
+                <th>Facility name (code)</th>
+                <th>Identifier</th>
+                <th>Order name (number)</th>
+                <th>Patient fullName</th>
+                <th>Physician name</th>
+                <th>Order status</th>
+                <th>Add favorite</th>
+            </tr>
+        </thead>
+        <tr *ngFor="let order of orders | search: orderSearch : 'orderName'">
+            <td>{{order.creationDate.dateTime}}</td>
+            <td>{{order.creator?.name}}</td>
+            <td>{{order.facility?.name}}, ({{order.facility?.code}})
+            <td>{{order.identifier}}</td>
+            <td>
+                {{order.orderName}} ({{order.orderNum}})
+            </td>
+            <td>{{order.patient?.fullName}}</td>
+            <td>{{order.physician?.name}}</td>
+            <td>{{order.status?.name}}</td>
+            <td >
+                <div class="btn-heart" (click)="setFavorite(order.orderNum)" [ngClass]="{'red': order.favorite === true, 'white': order.favorite === false}"></div></td>
+        </tr>
+    </table>
+    
+    <table *ngIf="showFav === true">
+        <thead>
+            <tr>
+                <th>Create date</th>
+                <th>Creator name</th>
+                <th>Facility name (code)</th>
+                <th>Identifier</th>
+                <th>Order name (number)</th>
+                <th>Patient fullName</th>
+                <th>Physician name</th>
+                <th>Order status</th>
+                <th>Add favorite</th>
+            </tr>
+        </thead>
+        <tr *ngFor="let order of orders | search: orderSearch : 'orderName'">
+            <td *ngIf="order.favorite === true">{{order.creationDate.dateTime}}</td>
+            <td *ngIf="order.favorite === true">{{order.creator?.name}}</td>
+            <td *ngIf="order.favorite === true">{{order.facility?.name}}, ({{order.facility?.code}})
+            <td *ngIf="order.favorite === true">{{order.identifier}}</td>
+            <td *ngIf="order.favorite === true">
+                {{order.orderName}} ({{order.orderNum}})
+            </td>
+            <td *ngIf="order.favorite === true">{{order.patient?.fullName}}</td>
+            <td *ngIf="order.favorite === true">{{order.physician?.name}}</td>
+            <td *ngIf="order.favorite === true">{{order.status?.name}}</td>
+            <td *ngIf="order.favorite === true">
+                <div class="btn-heart" (click)="setFavorite(order.orderNum)" [ngClass]="{'red': order.favorite === true, 'white': order.favorite === false}"></div></td>
+        </tr>
+    </table>
+</div>
+        

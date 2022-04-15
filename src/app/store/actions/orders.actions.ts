@@ -4,6 +4,7 @@ export enum OrdersActionTypes {
   LoadOrders = '[Orders] Load Orders',
   LoadOrdersSuccess = '[Orders] Load Orders Success',
   LoadOrdersFailure = '[Orders] Load Orders Failure',
+  AddOrderToFavorite = '[Orders] Add Order To Favorite'
 }
 
 export class LoadOrders implements Action {
@@ -20,5 +21,10 @@ export class LoadOrdersFailure implements Action {
   constructor(public payload: any) { }
 }
 
-export type OrdersActions = LoadOrders | LoadOrdersSuccess | LoadOrdersFailure;
+export class AddOrderToFavorite implements Action {
+  readonly type = OrdersActionTypes.AddOrderToFavorite;
+  constructor(public payload: any) { }
+}
+
+export type OrdersActions = LoadOrders | LoadOrdersSuccess | LoadOrdersFailure | AddOrderToFavorite;
 

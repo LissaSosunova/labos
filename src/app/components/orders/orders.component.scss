@@ -1,0 +1,42 @@
+table {
+    width: 100%;
+    font-size: 0.8rem;
+    text-align: left;
+    border: 1px solid gray;
+    border-collapse: collapse;
+    tr {
+        border: 1px solid gray;
+        td {
+            padding: 5px;
+            border-bottom: 1px solid gray;
+            border-right: 1px solid gray;
+        }
+        th {
+            padding: 5px;
+            border-bottom: 1px solid gray;
+            border-right: 1px solid gray;
+        }
+    }
+}
+.wrapper {
+    margin-top: 25px;
+}
+.btn-heart {
+    min-width: 30px;
+    min-height: 30px;
+    &:hover {
+        cursor: pointer;
+    }
+}
+.red {
+    background: url('../../../assets/heart-icon.svg') no-repeat center center;
+    background-size: 50px 40px;
+    width: 60px;
+    height: 30px;
+}
+.white {
+    background: url('../../../assets/heart-outline-icon.svg') no-repeat center center;
+    background-size: 50px 40px;
+    width: 60px;
+    height: 30px;
+}
