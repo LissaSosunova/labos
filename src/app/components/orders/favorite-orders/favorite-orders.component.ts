@@ -3,40 +3,32 @@ import { AddOrderToFavorite } from 'src/app/store/actions/orders.actions';
 import { Store, select } from '@ngrx/store';
 import { getOrders } from 'src/app/store/reducers';
 import { SearchPipe } from 'src/app/shared/pipes/search.pipe';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-orders',
-  templateUrl: './orders.component.html',
-  styleUrls: ['./orders.component.scss'],
+  selector: 'app-favorite-orders',
+  templateUrl: './favorite-orders.component.html',
+  styleUrls: ['./favorite-orders.component.scss'],
   providers: [SearchPipe]
 })
-export class OrdersComponent implements OnInit {
+export class FavoriteOrdersComponent implements OnInit {
   orders = {};
   orderSearch = '';
-  currentRout = '';
   constructor(
     private store: Store<any>,
     private router: Router
-  ) {
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-          this.currentRout = event.urlAfterRedirects;
-       }
-    });
-  }
+  ) { }
 
   ngOnInit(): void {
     this.store.pipe(select(getOrders)).subscribe((state) => {
-      this.orders = state.data;
+      this.orders = state.favorite;
     }
     );
   }
-
   setFavorite(id: any): void {
     this.store.dispatch(new AddOrderToFavorite({id}));
   }
   switchView(): void {
-    this.router.navigate(['orders', 'favorites']);
+    this.router.navigate(['orders']);
   }
 }

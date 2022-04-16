@@ -16,6 +16,8 @@ import { StoreModule } from '@ngrx/store';
 import { OrdersEffects } from './store/effects/orders.effects';
 import { reducers } from 'src/app/store/reducers';
 import { PatientsEffects } from './store/effects/patients.effects';
+import { FavoriteOrdersComponent } from './components/orders/favorite-orders/favorite-orders.component';
+import { FavoritePatientsComponent } from './components/patients/favorite-patients/favorite-patients.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +25,9 @@ import { PatientsEffects } from './store/effects/patients.effects';
     MainComponent,
     SideBarComponent,
     PatientsComponent,
-    OrdersComponent
+    OrdersComponent,
+    FavoriteOrdersComponent,
+    FavoritePatientsComponent
   ],
   imports: [
     BrowserModule,

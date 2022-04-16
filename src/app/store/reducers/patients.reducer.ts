@@ -40,13 +40,15 @@ export interface NewPatient extends Patient {
   favorite: boolean;
 }
 export interface StatePatients {
-  data: any;
+  data: Array<NewPatient>;
   isLoaded: boolean;
+  favorite: Array<NewPatient>;
 }
 
 export const initialState: StatePatients = {
   data: [],
-  isLoaded: false
+  isLoaded: false,
+  favorite: []
 };
 
 
@@ -79,6 +81,7 @@ export function patientsReducer(state: StatePatients = initialState, action: Pat
           }
         });
         updateState.data = newstateData;
+        updateState.favorite = newstateData.filter((val: NewPatient) => val.favorite === true);
         return updateState;
       }
 
