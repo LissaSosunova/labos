@@ -71,11 +71,13 @@ export interface NewOrder extends Order {
 export interface StateOrders {
   data: Array<NewOrder>;
   isLoaded: boolean;
+  favorite: Array<NewOrder>;
 }
 
 export const initialState: StateOrders = {
   data: [],
-  isLoaded: false
+  isLoaded: false,
+  favorite: []
 };
 
 export function ordersReducer(state: StateOrders = initialState, action: OrdersActions): StateOrders {
@@ -107,6 +109,7 @@ export function ordersReducer(state: StateOrders = initialState, action: OrdersA
         }
       });
       updateState.data = newstateData;
+      updateState.favorite = newstateData.filter((val: NewOrder) => val.favorite === true);
       return updateState;
     }
 

@@ -1,9 +1,8 @@
-
-<div class="wrapper" *ngIf="currentRout !== '/orders/favorites'">
-    <div class="search">Search by order name <input type="search" [(ngModel)] = "orderSearch" #ctrl="ngModel" class="input-search"></div>
+<div class="search">Search by order name <input type="search" [(ngModel)] = "orderSearch" #ctrl="ngModel" class="input-search"></div>
+<div class="wrapper">
     <div class="col-xs-12 end-xs">
         <button (click)="switchView()" class="btn-show-fav">
-            <span>Show favorite</span>
+            <span>Hide favorite</span>
         </button>
     </div>
     <table>
@@ -36,5 +35,4 @@
         </tr>
     </table>
 </div>
-<router-outlet></router-outlet>
         
